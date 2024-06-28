@@ -6,3 +6,9 @@ export const teamsSorted = TEAMS_SHORT.sort();
 export const dallasSorted = PLAYERS.filter(
   (player) => player.teamAbbrevs === "DAL"
 );
+
+export function playersFiltered(team) {
+  const tempContainer = PLAYERS.filter((abbr) => abbr.teamAbbrevs === team);
+
+  return tempContainer;
+}

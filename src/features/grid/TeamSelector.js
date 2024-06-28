@@ -6,10 +6,12 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { teamsSorted } from "./gridSlice";
 
-const TeamSelector = () => {
+const TeamSelector = (props) => {
+  const { updateTeam } = props;
   const [team, setTeam] = React.useState("ANA");
 
   const handleChange = (event) => {
+    updateTeam(event.target.value);
     setTeam(event.target.value);
   };
 

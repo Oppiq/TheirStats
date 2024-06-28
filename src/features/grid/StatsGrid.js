@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
-import { dallasSorted } from "./gridSlice";
+import { playersFiltered } from "./gridSlice";
 
 const columns = [
   {
@@ -120,35 +120,36 @@ const columns = [
   },
 ];
 
-const rows = [];
+const StatsGrid = ({ team }) => {
+  const rows = [];
+  const playersSortedByTeam = playersFiltered(team);
 
-dallasSorted.map((player, idx) => {
-  let tempObject = {
-    id: idx,
-    skaterFullName: player.skaterFullName,
-    positionCode: player.positionCode,
-    gamesPlayed: player.gamesPlayed,
-    goals: player.goals,
-    assists: player.assists,
-    points: player.points,
-    pointsPerGame: player.pointsPerGame,
-    shots: player.shots,
-    shootingPct: player.shootingPct,
-    plusMinus: player.plusMinus,
-    penaltyMinutes: player.penaltyMinutes,
-    timeOnIcePerGame: player.timeOnIcePerGame,
-    faceOffWinPct: player.faceoffWinPct,
-    gameWinningGoals: player.gameWinningGoals,
-    otGoals: player.otGoals,
-    ppGoals: player.ppGoals,
-    ppPoints: player.ppPoints,
-    shGoals: player.shGoals,
-    shPoints: player.shGoals,
-  };
-  rows.push(tempObject);
-});
+  playersSortedByTeam.map((player, idx) => {
+    let tempObject = {
+      id: idx,
+      skaterFullName: player.skaterFullName,
+      positionCode: player.positionCode,
+      gamesPlayed: player.gamesPlayed,
+      goals: player.goals,
+      assists: player.assists,
+      points: player.points,
+      pointsPerGame: player.pointsPerGame,
+      shots: player.shots,
+      shootingPct: player.shootingPct,
+      plusMinus: player.plusMinus,
+      penaltyMinutes: player.penaltyMinutes,
+      timeOnIcePerGame: player.timeOnIcePerGame,
+      faceOffWinPct: player.faceoffWinPct,
+      gameWinningGoals: player.gameWinningGoals,
+      otGoals: player.otGoals,
+      ppGoals: player.ppGoals,
+      ppPoints: player.ppPoints,
+      shGoals: player.shGoals,
+      shPoints: player.shGoals,
+    };
+    rows.push(tempObject);
+  });
 
-const StatsGrid = () => {
   return (
     <Box sx={{ height: 800, width: "100%" }}>
       <DataGrid
